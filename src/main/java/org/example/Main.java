@@ -3,18 +3,24 @@ package org.example;
 import org.example.abstractFactory.Car;
 import org.example.abstractFactory.CarFactory;
 import org.example.abstractFactory.FactoryProvider;
+import org.example.adapter.Pupil;
+import org.example.adapter.PupilAdapter;
+import org.example.adapter.Student;
+import org.example.adapter.exercises.VideoGame;
+import org.example.adapter.exercises.VideoGameAdapter;
 import org.example.builder.Weapon;
 import org.example.builder.WeaponBuilder;
 import org.example.factory.Game;
-import org.example.factory.GameFactory;
-import org.example.factory.HaloGameCreator;
-import org.example.factory.ScrabbleGameCreator;
-import org.example.singleton.CountEnum;
-import org.example.singleton.Database;
 import org.example.singleton.exercises.Computer;
 import org.example.singleton.exercises.Engine;
+import org.example.builder.exercises.User;
+import org.example.builder.exercises.UserBuilder;
+
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 
 public class Main {
@@ -51,6 +57,22 @@ public class Main {
 
         System.out.println(ak47.getDamage());
 
+        User newUser = new UserBuilder()
+                .withFirstName("Mary")
+                .withLastName("Steel")
+                .withAge(20)
+                .withAddress("Tallinn")
+                .withEmail("maryS@gmail.com")
+                .withPhoneNumber(5456366)
+                .build();
+        System.out.println(newUser);
+
+       Student ken = new PupilAdapter(new Pupil("Ken", "Derrick", "KenDer@gmail.com", 20, Arrays.asList(2, 3, 4, 5)));
+
+        System.out.println(ken.getFullName());
+        System.out.println(ken.isAdult());
+
+
 
     // 30 minutes
     //Exercise: Create an eager singleton class called Engine
@@ -77,6 +99,12 @@ public class Main {
         Car sedan = factory.createSedan();
 
         System.out.println(sedan);
+
+
+        Game uncharted = new VideoGameAdapter(new VideoGame("Uncharted 4", 16, 4, 200));
+
+        System.out.println(uncharted.getName());
+        System.out.println(uncharted.canBePlayedRemotely());
 
     }
 
