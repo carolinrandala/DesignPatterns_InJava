@@ -6,10 +6,13 @@ import org.example.abstractFactory.FactoryProvider;
 import org.example.adapter.Pupil;
 import org.example.adapter.PupilAdapter;
 import org.example.adapter.Student;
-import org.example.adapter.exercises.VideoGame;
-import org.example.adapter.exercises.VideoGameAdapter;
+import org.example.adapter.exercises.*;
+import org.example.adapter.exercises.rectangle.Adapter;
+import org.example.adapter.exercises.rectangle.Rectangle;
+import org.example.adapter.exercises.rectangle.Square;
 import org.example.builder.Weapon;
 import org.example.builder.WeaponBuilder;
+import org.example.builder.exercises.Employee;
 import org.example.factory.Game;
 import org.example.singleton.exercises.Computer;
 import org.example.singleton.exercises.Engine;
@@ -19,8 +22,6 @@ import org.example.builder.exercises.UserBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 
 public class Main {
@@ -74,6 +75,10 @@ public class Main {
 
 
 
+
+
+
+
     // 30 minutes
     //Exercise: Create an eager singleton class called Engine
     //It should have a boolean field called engine
@@ -105,6 +110,20 @@ public class Main {
 
         System.out.println(uncharted.getName());
         System.out.println(uncharted.canBePlayedRemotely());
+
+        Employee kate = new Employee.Builder()
+                .withFirstName("Kate")
+                .withLastName("Moore")
+                .withAge(30)
+                .withPhoneNumber("+372 5897037")
+                .withSalary(1500)
+                .build();
+        System.out.println(kate);
+
+
+        Rectangle shape = new Adapter(new Square(28));
+        System.out.println(shape.getWidth());
+        System.out.println(shape.getArea());
 
     }
 
